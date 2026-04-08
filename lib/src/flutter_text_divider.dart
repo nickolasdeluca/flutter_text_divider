@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 /// Line colour and thickness fall back to [DividerThemeData] / [ThemeData];
 /// text style falls back to [TextTheme.bodyMedium].
 ///
-/// ## Horizontal (default)
+/// #### Horizontal (default)
 /// ```dart
 /// const TextDivider(text: 'or')
 /// ```
 ///
-/// ## Vertical
+/// #### Vertical
 /// The widget must be inside a parent that provides a bounded height.
 /// ```dart
 /// SizedBox(
@@ -20,6 +20,7 @@ import 'package:flutter/material.dart';
 /// )
 /// ```
 class TextDivider extends StatelessWidget {
+  /// Creates a [TextDivider] widget.
   const TextDivider({
     super.key,
     required this.text,

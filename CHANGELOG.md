@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2
+
+* Added missing documentation for TextDivider constructor.
+
 ## 0.1.1
 
 * Added `height` parameter for horizontal dividers, mirroring `Divider.height`.
