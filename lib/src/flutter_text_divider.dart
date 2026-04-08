@@ -30,11 +30,15 @@ class TextDivider extends StatelessWidget {
     this.gap = 8.0,
     this.indent = 0.0,
     this.endIndent = 0.0,
+    this.height = 16.0,
+    this.width = 16.0,
     this.fallbackLineLength = 40.0,
   }) : assert(thickness > 0, 'thickness must be greater than 0'),
        assert(gap >= 0, 'gap must be non-negative'),
        assert(indent >= 0, 'indent must be non-negative'),
        assert(endIndent >= 0, 'endIndent must be non-negative'),
+       assert(height == null || height >= 0, 'height must be non-negative'),
+       assert(width == null || width >= 0, 'width must be non-negative'),
        assert(
          fallbackLineLength > 0,
          'fallbackLineLength must be greater than 0',
@@ -83,6 +87,28 @@ class TextDivider extends StatelessWidget {
   /// is the bottom indent. Defaults to `0.0`.
   final double endIndent;
 
+  /// The total vertical extent of a horizontal divider.
+  ///
+  /// When [axis] is [Axis.horizontal] and this is non-null, the widget is
+  /// wrapped in a [SizedBox] with the given [height] and the content is
+  /// vertically centred, mirroring [Divider.height].
+  ///
+  /// Has no effect when [axis] is [Axis.vertical].
+  ///
+  /// Must be greater than `0` when non-null. Defaults to `16.0`.
+  final double? height;
+
+  /// The total horizontal extent of a vertical divider.
+  ///
+  /// When [axis] is [Axis.vertical] and this is non-null, the widget is
+  /// wrapped in a [SizedBox] with the given [width] and the content is
+  /// horizontally centred, mirroring [VerticalDivider.width].
+  ///
+  /// Has no effect when [axis] is [Axis.horizontal].
+  ///
+  /// Must be greater than `0` when non-null. Defaults to `16.0`.
+  final double? width;
+
   /// The fixed line length used when the divider is placed inside a parent
   /// with unbounded constraints (e.g. a [ListView] or preview host).
   ///
@@ -99,28 +125,36 @@ class TextDivider extends StatelessWidget {
     final effectiveTextStyle =
         textStyle ?? theme.textTheme.bodyMedium ?? const TextStyle();
 
-    return switch (axis) {
-      .horizontal => _HorizontalTextDivider(
-        text: text,
-        textStyle: effectiveTextStyle,
-        color: effectiveColor,
-        thickness: thickness,
-        gap: gap,
-        indent: indent,
-        endIndent: endIndent,
-        fallbackLineLength: fallbackLineLength,
-      ),
-      .vertical => _VerticalTextDivider(
-        text: text,
-        textStyle: effectiveTextStyle,
-        color: effectiveColor,
-        thickness: thickness,
-        gap: gap,
-        indent: indent,
-        endIndent: endIndent,
-        fallbackLineLength: fallbackLineLength,
-      ),
-    };
+    switch (axis) {
+      case .horizontal:
+        return SizedBox(
+          height: height,
+          child: _HorizontalTextDivider(
+            text: text,
+            textStyle: effectiveTextStyle,
+            color: effectiveColor,
+            thickness: thickness,
+            gap: gap,
+            indent: indent,
+            endIndent: endIndent,
+            fallbackLineLength: fallbackLineLength,
+          ),
+        );
+      case .vertical:
+        return SizedBox(
+          width: width,
+          child: _VerticalTextDivider(
+            text: text,
+            textStyle: effectiveTextStyle,
+            color: effectiveColor,
+            thickness: thickness,
+            gap: gap,
+            indent: indent,
+            endIndent: endIndent,
+            fallbackLineLength: fallbackLineLength,
+          ),
+        );
+    }
   }
 }
 

@@ -6,7 +6,7 @@ import 'package:flutter_text_divider/flutter_text_divider.dart';
 Widget horizontalDividerPreview() {
   return TextDivider(
     axis: Axis.horizontal,
-    text: 'horizontal or',
+    text: ' or',
     color: Colors.white,
     thickness: 2.0,
     gap: 12,
@@ -19,11 +19,12 @@ Widget horizontalDividerPreview() {
 Widget verticalDividerPreview() {
   return TextDivider(
     axis: Axis.vertical,
-    text: 'vertical\nor',
+    text: 'or',
     color: Colors.white,
     thickness: 2.0,
     gap: 12,
     indent: 16,
     endIndent: 16,
+    width: 50,
   );
 }

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.1
+
+* Added `height` parameter for horizontal dividers, mirroring `Divider.height`.
+* Added `width` parameter for vertical dividers, mirroring `VerticalDivider.width`.
+* Added `fallbackLineLength` parameter for controlling line length inside
+  unbounded constraints.
+* Horizontal divider now correctly fills parent width instead of using a
+  fixed line length.
+
 ## 0.1.0
 
 * Initial release.

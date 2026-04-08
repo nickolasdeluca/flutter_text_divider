@@ -136,6 +136,83 @@ void main() {
     });
   });
 
+  group('TextDivider - height (horizontal)', () {
+    testWidgets('wraps in a SizedBox with the given height', (tester) async {
+      await tester.pumpWidget(
+        wrap(const TextDivider(text: 'or', height: 48.0)),
+      );
+
+      final sizedBox = tester.widget<SizedBox>(
+        find
+            .descendant(
+              of: find.byType(TextDivider),
+              matching: find.byType(SizedBox),
+            )
+            .first,
+      );
+      expect(sizedBox.height, 48.0);
+    });
+
+    testWidgets('centres content vertically within the height', (tester) async {
+      await tester.pumpWidget(
+        wrap(const TextDivider(text: 'or', height: 80.0)),
+      );
+
+      expect(
+        find.descendant(
+          of: find.byType(SizedBox),
+          matching: find.byType(Center),
+        ),
+        findsWidgets,
+      );
+    });
+
+    testWidgets('renders without error when height is null', (tester) async {
+      await tester.pumpWidget(wrap(const TextDivider(text: 'or')));
+      expect(tester.takeException(), isNull);
+    });
+  });
+
+  group('TextDivider - width (vertical)', () {
+    testWidgets('wraps in a SizedBox with the given width', (tester) async {
+      await tester.pumpWidget(
+        wrap(
+          const TextDivider(text: 'or', axis: Axis.vertical, width: 64.0),
+          scrollAxis: Axis.vertical,
+        ),
+      );
+
+      final sizedBox = tester.widget<SizedBox>(
+        find
+            .descendant(
+              of: find.byType(TextDivider),
+              matching: find.byType(SizedBox),
+            )
+            .first,
+      );
+      expect(sizedBox.width, 64.0);
+    });
+
+    testWidgets('centres content horizontally within the width', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        wrap(
+          const TextDivider(text: 'or', axis: Axis.vertical, width: 80.0),
+          scrollAxis: Axis.vertical,
+        ),
+      );
+
+      expect(
+        find.descendant(
+          of: find.byType(SizedBox),
+          matching: find.byType(Center),
+        ),
+        findsWidgets,
+      );
+    });
+  });
+
   group('TextDivider - assertions', () {
     test('throws when thickness <= 0', () {
       expect(() => TextDivider(text: 'or', thickness: 0), throwsAssertionError);
@@ -154,6 +231,14 @@ void main() {
         () => TextDivider(text: 'or', endIndent: -4),
         throwsAssertionError,
       );
+    });
+
+    test('throws when height is negative', () {
+      expect(() => TextDivider(text: 'or', height: -1), throwsAssertionError);
+    });
+
+    test('throws when width is negative', () {
+      expect(() => TextDivider(text: 'or', width: -1), throwsAssertionError);
     });
 
     test('throws when fallbackLineLength <= 0', () {

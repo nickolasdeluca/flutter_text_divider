@@ -12,6 +12,7 @@ Supports both **horizontal** and **vertical** orientations and integrates with F
 - Inherits line colour and thickness from `DividerThemeData` / `ThemeData`
 - Inherits text style from `TextTheme.bodyMedium`
 - Configurable gap, indent, endIndent, and custom colours / styles
+- `height` / `width` parameters mirror `Divider.height` and `VerticalDivider.width` for proper spacing
 
 ---
 
@@ -59,16 +60,19 @@ SizedBox(
 
 ## Parameters
 
-| Parameter   | Type         | Default           | Description                                                      |
-|-------------|--------------|-------------------|------------------------------------------------------------------|
-| `text`      | `String`     | **required**      | Label shown in the centre of the divider.                        |
-| `axis`      | `Axis`       | `Axis.horizontal` | Orientation of the dividing lines.                               |
-| `textStyle` | `TextStyle?` | `bodyMedium`      | Style applied to `text`.                                         |
-| `color`     | `Color?`     | theme default     | Colour of the dividing lines.                                    |
-| `thickness` | `double`     | `1.0`             | Thickness of each line. Must be > 0.                             |
-| `gap`       | `double`     | `8.0`             | Space between the text and each line.                            |
-| `indent`    | `double`     | `0.0`             | Leading space (left for horizontal, top for vertical).           |
-| `endIndent` | `double`     | `0.0`             | Trailing space (right for horizontal, bottom for vertical).      |
+| Parameter            | Type         | Default           | Description                                                                   |
+|----------------------|--------------|-------------------|-------------------------------------------------------------------------------|
+| `text`               | `String`     | **required**      | Label shown in the centre of the divider.                                     |
+| `axis`               | `Axis`       | `Axis.horizontal` | Orientation of the dividing lines.                                            |
+| `textStyle`          | `TextStyle?` | `bodyMedium`      | Style applied to `text`.                                                      |
+| `color`              | `Color?`     | theme default     | Colour of the dividing lines.                                                 |
+| `thickness`          | `double`     | `1.0`             | Thickness of each line. Must be > 0.                                          |
+| `gap`                | `double`     | `8.0`             | Space between the text and each line.                                         |
+| `indent`             | `double`     | `0.0`             | Leading space (left for horizontal, top for vertical).                        |
+| `endIndent`          | `double`     | `0.0`             | Trailing space (right for horizontal, bottom for vertical).                   |
+| `height`             | `double?`    | `16.0`            | Total vertical extent of a horizontal divider (like `Divider.height`).        |
+| `width`              | `double?`    | `16.0`            | Total horizontal extent of a vertical divider (like `VerticalDivider.width`). |
+| `fallbackLineLength` | `double`     | `40.0`            | Fixed line length when inside unbounded constraints.                          |
 
 ---
 
