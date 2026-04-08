@@ -1,0 +1,20 @@
+name: flutter_text_divider
+description: "A Flutter widget that renders a divider with a text label centred between two lines."
+version: 0.1.0
+homepage: https://github.com/nickolasdeluca/flutter_text_divider
+
+environment:
+  sdk: ^3.11.4
+  flutter: ">=3.10.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
